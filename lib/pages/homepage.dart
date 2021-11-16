@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_keepnotes_clone/pages/addnote.dart';
 import '../themes/color_themes.dart';
+import 'package:get/get.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -14,22 +16,6 @@ class _HomePageState extends State<HomePage> {
     GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
     return SafeArea(
       child: Scaffold(
-        // extendBodyBehindAppBar: true,
-        // appBar: AppBar(
-        //     backgroundColor: Colors.transparent,
-        //     elevation: 0,
-
-        //     actionsIconTheme: IconThemeData(color: Colors.white),
-        //     actions: [
-        //       IconButton(
-        //         icon: Icon(Icons.grid_on),
-        //         onPressed: () {},
-        //       ),
-        //       IconButton(
-        //         icon: Icon(Icons.person),
-        //         onPressed: () {},
-        //       )
-        //     ]),
         drawer: Theme(
           data: Theme.of(context).copyWith(
             canvasColor: Colors
@@ -41,13 +27,17 @@ class _HomePageState extends State<HomePage> {
             child: ListView(
               children: <Widget>[
                 ListTile(
-                  title: Text('Item 1'),
+                  title: Text('Item 1',
+                    style: Theme.of(context).textTheme.bodyText2,),
                   onTap: () {
                     Navigator.pop(context);
                   },
                 ),
                 ListTile(
-                  title: Text('Item 2'),
+                  title: Text(
+                    'Item 2',
+                    style: Theme.of(context).textTheme.bodyText2,
+                  ),
                   onTap: () {
                     Navigator.pop(context);
                   },
@@ -100,7 +90,9 @@ class _HomePageState extends State<HomePage> {
           );
         }),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            Get.to(AddNote());
+          },
           child: Icon(Icons.add),
           backgroundColor: Colors.grey[700],
         ),
