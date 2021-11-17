@@ -19,8 +19,7 @@ class _HomePageState extends State<HomePage> {
         drawer: Theme(
           data: Theme.of(context).copyWith(
             canvasColor: Colors
-                .grey[900], //This will change the drawer background to blue.
-            //other styles
+                .grey[900],
           ),
           child: Drawer(
             elevation: 0,

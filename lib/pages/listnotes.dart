@@ -29,7 +29,6 @@ class _ListNotesState extends State<ListNotes> {
                   Map data = snapshot.data!.docs[index].data() as Map;
                   DateTime date = data['date'].toDate();
                   print('Data Here: $data');
-                  //Map datas = data['data'];
                   return Card(
                       color: Colors.transparent,
                       child: Padding(

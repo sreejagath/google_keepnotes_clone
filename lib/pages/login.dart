@@ -18,7 +18,6 @@ class LoginPage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                //Image.network('https://www.svgrepo.com/show/39674/notes.svg'),
                 Text('Note Down Anything'),
                 ElevatedButton(
                     onPressed: () {

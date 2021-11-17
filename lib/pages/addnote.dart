@@ -69,14 +69,6 @@ class _AddNoteState extends State<AddNote> {
                     onChanged: (value) {
                       note = value;
                     },
-                    // decoration: InputDecoration(
-
-                    //   border: InputBorder.none,
-                    //   hintText: 'Description',
-                    //   hintStyle: TextStyle(
-                    //     color: Colors.grey[600],
-                    //     )
-                    // ),
                   ),
                 ],
               ),

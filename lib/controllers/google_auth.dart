@@ -1,11 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-//import 'package:firebase/firebase.dart' as firebase;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_keepnotes_clone/pages/homepage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:get/get.dart';
-//import 'dart:html';
 
 GoogleSignIn _googleSignIn = GoogleSignIn();
 final FirebaseAuth _auth = FirebaseAuth.instance;
