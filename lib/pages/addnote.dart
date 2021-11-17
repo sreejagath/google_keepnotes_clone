@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_keepnotes_clone/themes/color_themes.dart';
 import 'package:get/get.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class AddNote extends StatefulWidget {
   const AddNote({Key? key}) : super(key: key);
@@ -11,25 +13,30 @@ class AddNote extends StatefulWidget {
 
 class _AddNoteState extends State<AddNote> {
   String? title;
-  String? note;
+  late String note = '';
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         backgroundColor: bgColor,
         appBar: AppBar(
-          elevation: 0,
-          backgroundColor: bgColor,
-          leading: IconButton(
-              onPressed: () {
-                Get.back();
-              },
-              icon: Icon(Icons.arrow_back)),
-        ),
+            elevation: 0,
+            backgroundColor: bgColor,
+            leading: IconButton(
+                onPressed: () {
+                  note.isEmpty ? Get.back() : addNote();
+                },
+                icon: Icon(Icons.arrow_back)),
+            actions: [
+              IconButton(
+                onPressed: () {},
+                icon: Icon(Icons.delete),
+              )
+            ]),
         body: Container(
           child: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(12.0),
               child: Column(
                 children: <Widget>[
                   TextField(
@@ -78,5 +85,22 @@ class _AddNoteState extends State<AddNote> {
         ),
       ),
     );
+  }
+
+  void addNote() async {
+    CollectionReference collectionReference = FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .collection('notes');
+
+    var data = {
+      'title': title,
+      'note': note,
+      'date': DateTime.now(),
+      'isFavorite': false
+    };
+
+    collectionReference.add(data);
+    Get.back();
   }
 }

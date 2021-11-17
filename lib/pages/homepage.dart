@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_keepnotes_clone/pages/addnote.dart';
+import 'package:google_keepnotes_clone/pages/listnotes.dart';
 import '../themes/color_themes.dart';
 import 'package:get/get.dart';
 
@@ -83,11 +84,16 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                   ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  ListNotes(),
                 ],
               ),
             )),
           );
         }),
+        
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             Get.to(AddNote());
