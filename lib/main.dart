@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_keepnotes_clone/pages/homepage.dart';
 import 'package:get/get.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
-  runApp(MyApp());
+void main() async{
+  await Firebase.initializeApp();
+  runApp(MyApp());  
 }
 
 class MyApp extends StatelessWidget {
