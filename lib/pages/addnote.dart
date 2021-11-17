@@ -10,6 +10,8 @@ class AddNote extends StatefulWidget {
 }
 
 class _AddNoteState extends State<AddNote> {
+  String? title;
+  String? note;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -17,7 +19,7 @@ class _AddNoteState extends State<AddNote> {
         backgroundColor: bgColor,
         appBar: AppBar(
           elevation: 0,
-          backgroundColor: Colors.grey[800],
+          backgroundColor: bgColor,
           leading: IconButton(
               onPressed: () {
                 Get.back();
@@ -32,22 +34,42 @@ class _AddNoteState extends State<AddNote> {
                 children: <Widget>[
                   TextField(
                     decoration: InputDecoration(
-                      border: InputBorder.none,
-                        hintText: 'Title', 
+                        border: InputBorder.none,
+                        hintText: 'Title',
                         hintStyle: TextStyle(
-                        color: Colors.grey[600],
-                        ))
-                        
+                          color: Colors.grey[600],
+                        )),
+                    style: TextStyle(
+                      fontSize: 25,
+                      color: Colors.white,
+                    ),
+                    onChanged: (value) {
+                      title = value;
+                    },
                   ),
                   TextField(
                     maxLines: null,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Description',
+                    decoration: InputDecoration.collapsed(
+                      hintText: 'Note',
                       hintStyle: TextStyle(
                         color: Colors.grey[600],
-                        )
+                      ),
                     ),
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.white,
+                    ),
+                    onChanged: (value) {
+                      note = value;
+                    },
+                    // decoration: InputDecoration(
+
+                    //   border: InputBorder.none,
+                    //   hintText: 'Description',
+                    //   hintStyle: TextStyle(
+                    //     color: Colors.grey[600],
+                    //     )
+                    // ),
                   ),
                 ],
               ),
