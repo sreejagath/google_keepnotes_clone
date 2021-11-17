@@ -1,4 +1,4 @@
-package com.example.google_keepnotes_clone
+package com.keepnotes.clone
 
 import io.flutter.embedding.android.FlutterActivity
 

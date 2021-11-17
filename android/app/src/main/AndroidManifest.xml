@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.google_keepnotes_clone">
+    package="com.keepnotes.clone">
    <application
         android:label="google_keepnotes_clone"
         android:icon="@mipmap/ic_launcher">
