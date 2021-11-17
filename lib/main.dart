@@ -3,9 +3,10 @@ import 'package:google_keepnotes_clone/pages/homepage.dart';
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-void main() async{
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp());  
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
