@@ -163,9 +163,6 @@ class _ReadNoteState extends State<ReadNote> {
     collectionReference.doc(widget.ref.id).update(data).then((value) {
       Get.to(HomePage());
     });
-    // setState(() {
-
-    // });
   }
 
   void deleteNote() async {
