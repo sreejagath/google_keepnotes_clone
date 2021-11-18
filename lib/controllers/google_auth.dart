@@ -25,7 +25,6 @@ Future<bool> signInGoogle(BuildContext context) async {
           await _auth.signInWithCredential(credential);
       final User user = authResult.user!;
       print("signed in " + user.displayName.toString());
-
       var userData = {
         'name': googleUser.displayName,
         'provider': 'google',
