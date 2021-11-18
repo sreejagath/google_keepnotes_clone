@@ -156,9 +156,6 @@ class _ReadNoteState extends State<ReadNote> {
       'date': DateTime.now(),
       'isFavorite': false
     };
-    // data['title'] == widget.data['title']&& data['note'] == widget.data['note']
-    //     ?
-    //     Get.back()
     print('Data is here :${widget.data} & from function : $data');
     collectionReference.doc(widget.ref.id).update(data).then((value) {
       Get.to(HomePage());
