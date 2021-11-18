@@ -47,8 +47,10 @@ class _ReadNoteState extends State<ReadNote> {
             backgroundColor: bgColor,
             leading: IconButton(
                 onPressed: () {
-                  //note.isEmpty ? Get.back() : addNote();
-                  Get.back();
+                  note.isEmpty ? Get.back() : updateNote();
+                  
+
+                  //Get.back();
                 },
                 icon: Icon(Icons.arrow_back)),
             actions: [
@@ -146,4 +148,21 @@ class _ReadNoteState extends State<ReadNote> {
   //   collectionReference.add(data);
   //   Get.back();
   // }
+  void updateNote() async {
+    print(title);
+    CollectionReference collectionReference = FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser?.uid)
+        .collection('notes');
+
+    var data = {
+      'title': title,
+      'note': note,
+      'date': DateTime.now(),
+      'isFavorite': false
+    };
+
+    collectionReference.doc(widget.ref.id).update(data);
+    Get.back();
+  }
 }

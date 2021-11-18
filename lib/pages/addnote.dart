@@ -24,7 +24,13 @@ class _AddNoteState extends State<AddNote> {
             backgroundColor: bgColor,
             leading: IconButton(
                 onPressed: () {
-                  note.isEmpty ? Get.back() : addNote();
+                  note.isEmpty ? 
+                  Get.back(
+                    canPop: true,
+                    result: false,
+                  
+                  ) 
+                  : addNote();
                 },
                 icon: Icon(Icons.arrow_back)),
             actions: [
@@ -94,5 +100,15 @@ class _AddNoteState extends State<AddNote> {
 
     collectionReference.add(data);
     Get.back();
+  }
+  void isEmptyGoBack()async{
+    Get.snackbar('', 'Note is empty',
+                      snackPosition: SnackPosition.BOTTOM,
+                      backgroundColor: Colors.grey,
+                      borderRadius: 10,
+                      margin: EdgeInsets.all(10),
+                      //textStyle: TextStyle(color: Colors.white),
+                      duration: Duration(seconds: 2));
+                  Get.back();
   }
 }
