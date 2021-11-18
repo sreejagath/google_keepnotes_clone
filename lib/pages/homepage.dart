@@ -18,16 +18,17 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
         drawer: Theme(
           data: Theme.of(context).copyWith(
-            canvasColor: Colors
-                .grey[900],
+            canvasColor: Colors.grey[900],
           ),
           child: Drawer(
             elevation: 0,
             child: ListView(
               children: <Widget>[
                 ListTile(
-                  title: Text('Item 1',
-                    style: Theme.of(context).textTheme.bodyText2,),
+                  title: Text(
+                    'Item 1',
+                    style: Theme.of(context).textTheme.bodyText2,
+                  ),
                   onTap: () {
                     Navigator.pop(context);
                   },
@@ -58,11 +59,11 @@ class _HomePageState extends State<HomePage> {
                     child: TextFormField(
                       decoration: InputDecoration(
                         hintText: 'Search your notes',
-                        hintStyle: TextStyle(
+                        hintStyle: const TextStyle(
                           color: Colors.white,
                         ),
                         prefixIcon: IconButton(
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.menu,
                             color: Colors.white,
                           ),
@@ -70,7 +71,7 @@ class _HomePageState extends State<HomePage> {
                             Scaffold.of(context).openDrawer();
                           },
                         ),
-                        suffixIcon: Icon(
+                        suffixIcon: const Icon(
                           Icons.person,
                           color: Colors.white,
                         ),
@@ -83,7 +84,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   ListNotes(),
@@ -92,12 +93,11 @@ class _HomePageState extends State<HomePage> {
             )),
           );
         }),
-        
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            Get.to(AddNote());
+            Get.to(const AddNote());
           },
-          child: Icon(Icons.add),
+          child: const Icon(Icons.add),
           backgroundColor: Colors.grey[700],
         ),
       ),

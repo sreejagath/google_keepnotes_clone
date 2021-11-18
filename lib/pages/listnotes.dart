@@ -69,11 +69,35 @@ class _ListNotesState extends State<ListNotes> {
                                         ),
                                         isFavorite
                                             ? IconButton(
-                                                onPressed: () {},
+                                                onPressed: () {
+                                                  collectionReference
+                                                      .doc(snapshot
+                                                          .data!.docs[index]
+                                                          .id)
+                                                      .update({
+                                                    'isFavorite': false
+                                                  });
+                                                setState(() {
+                                                  isFavorite = false;
+                                                
+                                                });
+                                                },
                                                 icon: Icon(Icons.favorite,
                                                     color: Colors.red))
                                             : IconButton(
-                                                onPressed: () {},
+                                                onPressed: () {
+                                                  collectionReference
+                                                      .doc(snapshot
+                                                          .data!.docs[index]
+                                                          .id)
+                                                      .update({
+                                                    'isFavorite': true
+                                                  });
+                                                setState(() {
+                                                  isFavorite = true;
+                                                
+                                                });
+                                                },
                                                 icon: Icon(
                                                     Icons.favorite_border,
                                                     color: Colors.grey[500]))

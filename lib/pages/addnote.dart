@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_keepnotes_clone/pages/homepage.dart';
 import 'package:google_keepnotes_clone/themes/color_themes.dart';
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -24,13 +25,12 @@ class _AddNoteState extends State<AddNote> {
             backgroundColor: bgColor,
             leading: IconButton(
                 onPressed: () {
-                  note.isEmpty ? 
-                  Get.back(
-                    canPop: true,
-                    result: false,
-                  
-                  ) 
-                  : addNote();
+                  note.isEmpty
+                      ? Get.back(
+                          canPop: true,
+                          result: false,
+                        )
+                      : addNote();
                 },
                 icon: Icon(Icons.arrow_back)),
             actions: [
@@ -98,17 +98,20 @@ class _AddNoteState extends State<AddNote> {
       'isFavorite': false
     };
 
-    collectionReference.add(data);
-    Get.back();
+    collectionReference.add(data).then((value) {
+      Get.to(HomePage());
+      Get.snackbar('Alert', 'Note Added');
+    });
   }
-  void isEmptyGoBack()async{
+
+  void isEmptyGoBack() async {
     Get.snackbar('', 'Note is empty',
-                      snackPosition: SnackPosition.BOTTOM,
-                      backgroundColor: Colors.grey,
-                      borderRadius: 10,
-                      margin: EdgeInsets.all(10),
-                      //textStyle: TextStyle(color: Colors.white),
-                      duration: Duration(seconds: 2));
-                  Get.back();
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.grey,
+        borderRadius: 10,
+        margin: EdgeInsets.all(10),
+        //textStyle: TextStyle(color: Colors.white),
+        duration: Duration(seconds: 2));
+    Get.back();
   }
 }

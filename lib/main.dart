@@ -1,6 +1,4 @@
-//import 'dart:html';
 import 'package:flutter/material.dart';
-import 'package:google_keepnotes_clone/pages/homepage.dart';
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:google_keepnotes_clone/pages/login.dart';
@@ -9,7 +7,7 @@ import 'package:google_keepnotes_clone/themes/color_themes.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -22,14 +20,14 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
         scaffoldBackgroundColor: bgColor,
-        textTheme: TextTheme(
+        textTheme: const TextTheme(
           bodyText2: TextStyle(color: Colors.white),
           headline2: TextStyle(
             color: Colors.white,
           ),
         ),
       ),
-      home: LoginPage(),
+      home: const LoginPage(),
     );
   }
 }
