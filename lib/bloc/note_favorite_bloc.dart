@@ -1,12 +1,19 @@
 import 'dart:async';
 
-class NoteFavoriteBloc {
-  final _noteFavoriteController = StreamController<bool>();
+class NoteIsFavoriteBloc {
+  final _noteIsFavoriteController = StreamController<bool>();
 
-  StreamSink<bool> get _noteIsFavoriteSink => _noteFavoriteController.sink;
-  Stream<bool> get _noteIsNotFavoriteStream => _noteFavoriteController.stream;
+  Stream<bool> get noteIsFavoriteStream => _noteIsFavoriteController.stream;
 
-  NoteFavoriteBloc() {
-    _noteIsNotFavoriteStream.listen(_noteIsFavoriteSink.add);
+  void dispose() {
+    _noteIsFavoriteController.close();
   }
+
+  void setNoteIsFavorite(bool isFavorite) {
+    _noteIsFavoriteController.sink.add(isFavorite);
+  }
+
+  // void toggleNoteIsFavorite() {
+  //   _noteIsFavoriteController.sink.add(!_noteIsFavoriteController.value);
+  // }
 }

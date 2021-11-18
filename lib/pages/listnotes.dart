@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_keepnotes_clone/bloc/note_favorite_bloc.dart';
 import 'package:google_keepnotes_clone/pages/readnote.dart';
 import 'package:intl/intl.dart';
 import 'package:get/get.dart';
@@ -19,8 +20,9 @@ class _ListNotesState extends State<ListNotes> {
       .collection('notes');
   @override
   Widget build(BuildContext context) {
+    final noteFavoriteBloc = NoteIsFavoriteBloc();
     return FutureBuilder<QuerySnapshot>(
-        future: collectionReference.get(),
+        future: collectionReference.orderBy('date', descending: true).get(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return ListView.builder(
@@ -67,20 +69,79 @@ class _ListNotesState extends State<ListNotes> {
                                               fontSize: 20,
                                               color: Colors.white),
                                         ),
+                                        // StreamBuilder(
+                                        //   stream: favoriteBloc.noteIsNotFavoriteStream,
+                                        //   builder: (context, snap) {
+                                        //   if (snap.hasData) {
+                                        //     return isFavorite?
+                                        //     IconButton(
+                                        //       icon: Icon(
+                                        //         Icons.favorite,
+                                        //         color: Colors.red,
+                                        //       ),
+                                        //       onPressed: () {
+                                        //         snap.data;
+                                        //             //{'isFavorite': false});
+                                        //       },
+                                        //     ):
+                                        //     IconButton(
+                                        //       icon: Icon(
+                                        //         Icons.favorite_border,
+                                        //         color: Colors.white,
+                                        //       ),
+                                        //       onPressed: () {
+                                        //         snap.data;
+                                        //             //{'isFavorite': true});
+                                        //       },
+                                        //     );
+                                        // }
+                                        //   return Container();
+                                        //   },
+                                        // ),
+                                        StreamBuilder(
+                                          stream: noteFavoriteBloc
+                                              .noteIsFavoriteStream,
+                                          builder: (context, snapshot) {
+                                            if (snapshot.hasData) {
+                                              return isFavorite
+                                                  ? IconButton(
+                                                      icon: Icon(
+                                                        Icons.favorite,
+                                                        color: Colors.red,
+                                                      ),
+                                                      onPressed: () {
+                                                        // noteFavoriteBloc
+                                                        //     .updateNoteFavorite(
+                                                        //         false);
+                                                      },
+                                                    )
+                                                  : IconButton(
+                                                      icon: Icon(
+                                                        Icons.favorite_border,
+                                                        color: Colors.white,
+                                                      ),
+                                                      onPressed: () {
+                                                        // noteFavoriteBloc
+                                                        //     .updateNoteFavorite(
+                                                        //         true);
+                                                      },
+                                                    );
+                                            }
+                                            return Container();
+                                          },
+                                        ),
                                         isFavorite
                                             ? IconButton(
                                                 onPressed: () {
                                                   collectionReference
                                                       .doc(snapshot
-                                                          .data!.docs[index]
-                                                          .id)
+                                                          .data!.docs[index].id)
                                                       .update({
                                                     'isFavorite': false
                                                   });
-                                                setState(() {
-                                                  isFavorite = false;
-                                                
-                                                });
+                                                  setState(() {
+                                                    isFavorite = false;
+                                                  });
                                                 },
                                                 icon: Icon(Icons.favorite,
                                                     color: Colors.red))
@@ -88,15 +149,12 @@ class _ListNotesState extends State<ListNotes> {
                                                 onPressed: () {
                                                   collectionReference
                                                       .doc(snapshot
-                                                          .data!.docs[index]
-                                                          .id)
-                                                      .update({
-                                                    'isFavorite': true
+                                                          .data!.docs[index].id)
+                                                      .update(
+                                                          {'isFavorite': true});
+                                                  setState(() {
+                                                    isFavorite = true;
                                                   });
-                                                setState(() {
-                                                  isFavorite = true;
-                                                
-                                                });
                                                 },
                                                 icon: Icon(
                                                     Icons.favorite_border,
