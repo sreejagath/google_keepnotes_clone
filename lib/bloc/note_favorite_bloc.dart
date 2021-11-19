@@ -13,7 +13,4 @@ class NoteIsFavoriteBloc {
     _noteIsFavoriteController.sink.add(isFavorite);
   }
 
-  // void toggleNoteIsFavorite() {
-  //   _noteIsFavoriteController.sink.add(!_noteIsFavoriteController.value);
-  // }
 }
